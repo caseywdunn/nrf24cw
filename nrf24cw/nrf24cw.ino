@@ -71,14 +71,16 @@ void key_change() {
     button_state = ! digitalRead( button_pin );
     radio.write(&button_state, sizeof(button_state));
 
-    Serial.print( "Local button: " );
-    Serial.println( button_state );
-
+    radio.printDetails();
     update_indicator();
 }
 
 // Called to update local status indicator
 void update_indicator() {
+  Serial.print( "Local button: " );
+  Serial.println( button_state );
+  Serial.print( "Remote button: " );
+  Serial.println( remote_state );
   if ( button_state or remote_state ){
     digitalWrite(led_pin, HIGH);
   } else {
