@@ -7,6 +7,8 @@ int id_1 = 4;
 int id_2 = 5;
 int id_4 = 6;
 
+int channel_num = 102;
+
 // Building on https://tmrh20.github.io/RF24/GettingStarted_8ino-example.html
 
 int radioNumber = 0;
@@ -50,6 +52,9 @@ void setup() {
   }
   
   radio.setPALevel( RF24_PA_LOW );
+  radio.setChannel( channel_num );
+
+  
   radio.startListening();
 
 }

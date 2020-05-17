@@ -31,6 +31,14 @@ Bidirectional communication -
 
 - https://howtomechatronics.com/tutorials/arduino/arduino-wireless-communication-nrf24l01-tutorial/
 
+
+### Improving stability and range
+
+https://web.archive.org/web/20180825143815/https://blog.blackoise.de/2016/02/fixing-your-cheap-nrf24l01-palna-module/
+
+Included channel_scanner code. In my shop, last 30 or so channels were much more clear than the lower ones.
+
+
 ### Libraries
 
 #### RF24
