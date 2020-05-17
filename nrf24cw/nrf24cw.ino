@@ -60,12 +60,7 @@ void loop() {
   radio.startListening();
   if ( radio.available()) {
     radio.read(&remote_state, sizeof(remote_state));
-    if ( remote_state ){
-      digitalWrite(led_pin, HIGH);
-    }
-    else{
-      digitalWrite(led_pin, LOW);
-    }
+    update_indicator();
   }
 }
 
@@ -78,4 +73,15 @@ void key_change() {
 
     Serial.print( "Local button: " );
     Serial.println( button_state );
+
+    update_indicator();
+}
+
+// Called to update local status indicator
+void update_indicator() {
+  if ( button_state or remote_state ){
+    digitalWrite(led_pin, HIGH);
+  } else {
+    digitalWrite(led_pin, LOW);
+  }
 }
