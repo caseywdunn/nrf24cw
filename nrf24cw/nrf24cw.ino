@@ -50,14 +50,13 @@ void setup() {
   }
   
   radio.setPALevel( RF24_PA_LOW );
-  
+  radio.startListening();
 
 }
 
 // Monitor for traffic
 void loop() {
-  delay(5);
-  radio.startListening();
+  delay(20);
   if ( radio.available()) {
     radio.read(&remote_state, sizeof(remote_state));
     update_indicator();
@@ -71,16 +70,17 @@ void key_change() {
     button_state = ! digitalRead( button_pin );
     radio.write(&button_state, sizeof(button_state));
 
-    radio.printDetails();
+    // radio.printDetails();
     update_indicator();
+    radio.startListening();
 }
 
 // Called to update local status indicator
 void update_indicator() {
-  Serial.print( "Local button: " );
-  Serial.println( button_state );
-  Serial.print( "Remote button: " );
-  Serial.println( remote_state );
+  
+  Serial.print( button_state );
+  Serial.print( remote_state );
+  Serial.println( "   Local Remote" );
   if ( button_state or remote_state ){
     digitalWrite(led_pin, HIGH);
   } else {
